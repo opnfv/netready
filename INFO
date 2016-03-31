@@ -1,6 +1,5 @@
 Project: Network Readiness (NetReady)
 Project Creation Date: March 22, 2016
-Project Category: Requirements
 Lifecycle State: Incubation
 Primary Contact: Georg Kunz
 Project Lead: Georg Kunz
@@ -24,4 +23,6 @@ Ahmed Elbornou (Cisco, amaged@cisco.com)
 Gergely Csatari (Nokia, gergely.csatari@nokia.com)
 
 
-Link to TSC approval of the project: http://ircbot.wl.linuxfoundation.org/meetings/opnfv-meeting/2016/opnfv-meeting.2016-03-22-14.00.html
+Link to TSC approval of the project:
+http://ircbot.wl.linuxfoundation.org/meetings/opnfv-meeting/2016/opnfv-meeting.2016-03-22-14.00.html
+
