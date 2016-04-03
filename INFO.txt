@@ -1,0 +1,27 @@
+Project: Network Readiness (NetReady)
+Project Creation Date: March 22, 2016
+Project Category: Requirements
+Lifecycle State: Incubation
+Primary Contact: Georg Kunz
+Project Lead: Georg Kunz
+Jira Project Name: NetReady
+Jira Project Prefix: NETREADY
+Mailing list tag: [netready]
+IRC: Server:freenode.net Channel:#opnfv-netready
+Repository: netready
+
+Committers:
+Georg Kunz (Ericsson, georg.kunz@ericsson.com)
+Ildikó Váncsa (Ericsson, ildiko.vancsa@ericsson.com)
+Tim Irnich (Ericsson, tim.irnich@ericsson.com)
+Nikolas Hermanns (Ericsson, nikolas.hermanns@ericsson.com)
+Bin Hu (AT&T, bh526r@att.com)
+Ashlee Young (Huawei, ashlee@wildernessvoice.com)
+Prakash Ramchandran (Huawei, prakash.ramchandran@huawei.com)
+Juraj Linkes (Cisco, jlinkes@cisco.com)
+Viliam Luc -X (Cisco, vluc@cisco.com)
+Ahmed Elbornou (Cisco, amaged@cisco.com)
+Gergely Csatari (Nokia, gergely.csatari@nokia.com)
+
+
+Link to TSC approval of the project: http://ircbot.wl.linuxfoundation.org/meetings/opnfv-meeting/2016/opnfv-meeting.2016-03-22-14.00.html
