@@ -10,23 +10,52 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
 
 .. glossary::
 
+    API
+        Application Programming Interface.
+
+    Cloud Computing
+        A model that enables access to a shared pool of configurable computing
+        resources, such as networks, servers, storage, applications, and
+        services, that can be rapidly provisioned and released with minimal
+        management effort or service provider interaction.
+
+    Edge Computing
+        Edge computing pushes applications, data and computing power (services)
+        away from centralized points to the logical extremes of a network.
+
+    Instance
+        Refers in OpenStack terminology to a running VM, or a VM in a known
+        state such as suspended, that can be used like a hardware server.
+
     NFV
-        Network Function Virtualization
+        Network Function Virtualization.
 
     NFVI
-        Network Function Virtualization Infrastructure; totality of all hardware
+        Network Function Virtualization Infrastructure. Totality of all hardware
         and software components which build up the environment in which VNFs are
         deployed.
 
+    SDN
+        Software-Defined Networking. Emerging architecture that decouples the
+        network control and forwarding functions, enabling the network control
+        to become directly programmable and the underlying infrastructure to be
+        abstracted for applications and network services.
+
+    Server
+        Computer that provides explicit services to the client software running
+        on that system, often managing a variety of computer operations. In
+        OpenStack terminology, a server is a VM instance.
+
     VIM
-        Virtualized Infrastructure Manager; functional block that is responsible
+        Virtualized Infrastructure Manager. Functional block that is responsible
         for controlling and managing the NFVI compute, storage and network
         resources, usually within one operator's Infrastructure Domain, e.g.
         NFVI Point of Presence (NFVI-PoP).
 
-    Virtual Machine (VM)
-        Virtualized computation environment that behaves very much like a
-        physical computer/server.
+    VM
+        Virtual Machine. Virtualized computation environment that behaves like a
+        physical computer/server by (re-)creating the computing architecture of a
+        real or hypothetical computer.
 
     Virtual network
         Virtual network routes information among the network interfaces of VM
@@ -34,6 +63,9 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
         connectivity.
 
     VNF
-        Virtualized Network Function. Implementation of an Network Function that
-        can be deployed on a Network Function Virtualization Infrastructure
-        (NFVI).
+        Virtualized Network Function. Implementation of an Network Function
+        that can be deployed on a Network Function Virtualization
+        Infrastructure (NFVI).
+
+    WAN
+        Wide Area Network.
