@@ -7,6 +7,7 @@ Use cases
 The following sections address networking use cases that have been identified to be relevant in the scope of NFV and NetReady.
 
 .. toctree::
+    use_cases/use_cases_l3vpn.rst
     use_cases/shared_service_functions.rst
     use_cases/programmable_provisioning.rst
     use_cases/georedundancy.rst
