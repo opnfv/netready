@@ -44,18 +44,30 @@ In L3VPN Red, VM G5 (10.1.1.5) is spawned on host A, and attached to subnet 10.1
 Exemplary workflow is described as follows:
 
 1. Create Network
+
 2. Create Network VRF Policy Resource ``Any-to-Any``
-2.1. This sets up that when this tenant is put on a HOST that:
-2.1.1. There will be a RD assigned per VRF
-2.1.2. There will be a RT used for the common any-to-any communication
+
+  2.1. This sets up that when this tenant is put on a HOST that:
+
+    2.1.1. There will be a RD assigned per VRF
+
+    2.1.2. There will be a RT used for the common any-to-any communication
+
 3. Create Subnet
+
 4. Create Port (subnet, network vrf policy resource). This causes controller to:
-4.1. Create vrf in vRouter's FIB, or Update vrf if already exists
-4.2. Install an entry for Guest's HOST-Route in FIBs of Vrouters serving this tenant Virtual Network
-4.3. Announce Guest HOST-Route to WAN-GW via MP-BGP
+
+  4.1. Create vrf in vRouter's FIB, or Update vrf if already exists
+
+  4.2. Install an entry for Guest's HOST-Route in FIBs of Vrouters serving this tenant Virtual Network
+
+  4.3. Announce Guest HOST-Route to WAN-GW via MP-BGP
+
 
 VRF Lets us do:
+
 1. Overlapping Addresses
+
 2. Segregation of Traffic
 
 Derrived Requirements
@@ -177,12 +189,18 @@ Exemplary VNF1(S) Spoke VRF is as follows:
 Exemplary workflow is described as follows:
 
 1. Create Network
+
 2. Create VRF Policy Resource
-2.1. Hub and Spoke
+
+  2.1. Hub and Spoke
+
 3. Create Subnet
+
 4. Create Port
-4.1. Subnet
-4.2. VRF Policy Resource, [H | S]
+
+  4.1. Subnet
+
+  4.2. VRF Policy Resource, [H | S]
 
 
 Derrived Requirements
