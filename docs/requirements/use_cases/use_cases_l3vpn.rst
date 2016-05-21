@@ -41,6 +41,19 @@ and assigned IP addresses respectively.
 In L3VPN Red, VM G5 (10.1.1.5) is spawned on host A, and attached to subnet 10.1.1.0/24. VM G6
 (10.1.1.6) is spawned on host B, and attached to the same subnet 10.1.1.0/24.
 
+VRF Lets us do:
+
+1. Overlapping Addresses
+
+2. Segregation of Traffic
+
+Derrived Requirements
+~~~~~~~~~~~~~~~~~~~~~
+   - TBD
+
+Northbound API / Workflow
++++++++++++++++++++++++++
+
 Exemplary workflow is described as follows:
 
 1. Create Network
@@ -64,35 +77,73 @@ Exemplary workflow is described as follows:
   4.3. Announce Guest HOST-Route to WAN-GW via MP-BGP
 
 
-VRF Lets us do:
-
-1. Overlapping Addresses
-
-2. Segregation of Traffic
-
-Derrived Requirements
-~~~~~~~~~~~~~~~~~~~~~
-   - TBD
-
-Northbound API / Workflow
-+++++++++++++++++++++++++
-   - TBD
 
 Data model objects
 ++++++++++++++++++
    - TBD
 
+
 Orchestration
 +++++++++++++
    - TBD
+
 
 Dependencies on compute services
 ++++++++++++++++++++++++++++++++
    - TBD
 
+
+
 Potential implementation
-++++++++++++++++++++++++
-   - TBD
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Support for creating and managing L3VPNs is available in OpenStack Neutron by
+means of the BGPVPN project (add REF). In order to create the L3VPN network
+configuration described above using the API BGPVPN API, the following workflow
+is needed:
+
+1. Create a Neutron network "blue"
+
+  :code:`neutron net-create blue`
+
+
+2. Create the first Neutron subnet of the network "blue"
+
+  :code:`neutron subnet-create <blue network UUID> 10.1.1.0/24`
+
+
+3. Create the second Neutron subnet of the network "blue"
+
+  :code:`neutron subnet-create <blue network UUID> 10.3.7.0/24`
+
+
+4. Create a L3VPN by means of the BGPVPN API
+
+  :code:`neutron bgpvpn-create --route-targets 64512:1 --tenant-id <tenant-id> --name blue`
+
+
+5. Associate the L3VPN with the previously created network
+
+  :code:`neutron bgpvpn-net-assoc-create blue --network <network-UUID>`
+
+  This command associates the given Neutron network with the L3VPN. The semantic
+  of this operation is that all subnets bound to the network are getting
+  interconnected through the BGP VPN and hence VMs located in either subnet can
+  communicate with each other.
+
+
+Gaps in the current solution
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+TBD
+
+
+Conclusion
+~~~~~~~~~~
+
+TBD
+
+
 
 
 ECMP Load Splitting Case (Anycast)
