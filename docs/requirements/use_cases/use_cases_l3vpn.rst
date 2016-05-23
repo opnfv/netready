@@ -98,7 +98,7 @@ Potential implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Support for creating and managing L3VPNs is available in OpenStack Neutron by
-means of the BGPVPN project (add REF). In order to create the L3VPN network
+means of the BGPVPN project [BGPVPN]_. In order to create the L3VPN network
 configuration described above using the API BGPVPN API, the following workflow
 is needed:
 

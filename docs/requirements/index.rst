@@ -51,3 +51,4 @@ NetReady: Network Readiness
     architecture.rst
     implementation.rst
     summary.rst
+    references.rst
