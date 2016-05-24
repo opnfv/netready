@@ -10,4 +10,5 @@ The following sections address networking use cases that have been identified to
     use_cases/l3vpn.rst
     use_cases/shared_service_functions.rst
     use_cases/programmable_provisioning.rst
-    use_cases/georedundancy.rst
+    use_cases/georedundancy_cells.rst
+    use_cases/georedundancy_regions_insances.rst

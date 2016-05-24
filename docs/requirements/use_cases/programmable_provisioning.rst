@@ -14,16 +14,17 @@ It should be possible to assign the capability to create provider networks to an
 
 Derrived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
-   - Possibility to assign the property of provider networks to any role
-   - When the provider network is created it should be checked if the role of the user has the permission to create a provider network.
+   - Authorize the possibility of provider network creation based on policy
+   - There should be a new entry in :code:`policy.json` which controls the provider network creation
+   - Default policy of this new enrty should be :code:`rule:admin_or_owner`.
 
 Northbound API / Workflow
 +++++++++++++++++++++++++
-   - TBD
+   - No changes in the API
 
 Data model objects
 ++++++++++++++++++
-   - TBD
+   - No changes in the data model
 
 Orchestration
 +++++++++++++
@@ -35,4 +36,5 @@ Dependencies on compute services
 
 Potential implementation
 ++++++++++++++++++++++++
-   - TBD
+   - Policy engine shall be able to handle a new provider network creation and modification related policy
+   - When a provider network is created or modified neutron should check the authority with the policy engine instead of requesting administrative rights

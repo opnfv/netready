@@ -1,27 +1,30 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-Georedundancy Use cases (Draft)
-===============================
+Georedundancy: Connection between different OpenStack cells
+-----------------------------------------------------------
 Georedundancy refers to a configuration which ensures the service continuity of
 the VNF-s even if a whole datacenter fails [Q: Do we include or exclude VNF
 pooling?].
+
 This can be achieved by redundant VNF-s in a hot (spare VNF is running its
 configuration and internal state is synchronised to the active VNF),
 warm (spare VNF is running, its configuration is synchronised to the active VNF)
 or cold (spare VNF is not running, active VNF-s configuration is stored in a
 database and dropped to the spare VNF during its activation) standby state in a
 different datacenter from where the active VNF-s are running.
+The synchronisation and data transfer can be handled by the application or the infrastructure.
 In all of these georedundancy setups there is a need for a network connection
 between the datacenter running the active VNF and the datacenter running the
 spare VNF.
 
-This set of use cases is about enabling the possiblity to select a datacenter as
+In case of a distributed cloud it is possible that the georedundant cloud of an application
+is not predefined or changed and the change requires configuration in the underlay networks.
+
+This set of georedundancy use cases is about enabling the possiblity to select a datacenter as
 backup datacenter and build the connectivity between the NFVI-s in the
 different datacenters in a programmable way.
 
-Connection between different OpenStack cells
---------------------------------------------
 Description
 ^^^^^^^^^^^
 There should be an API to manage the infrastructure-s networks between two
@@ -56,43 +59,6 @@ Orchestration
 Dependencies on compute services
 """"""""""""""""""""""""""""""""
    None.
-
-Potential implementation
-""""""""""""""""""""""""
-   - TBD
-
-Connection between different OpenStack regions or cloud instances
------------------------------------------------------------------
-
-Description
-^^^^^^^^^^^
-There should be an API to manage the infrastructure-s networks between two
-OpenStack regions or between two OpenStack cloud instances.
-(The only difference is the shared keystone in case of a region)
-
-Requirements
-^^^^^^^^^^^^
-   - Possibility to define a remote and a local endpoint
-   - Possiblity to define an overlay/segregation technology
-
-Northbound API / Workflow
-"""""""""""""""""""""""""
-   - An infrastructure network management API is needed
-   - When the endpoints are created neutron is configured to use the new network.
-     (Note: Nova networking is not considered as it is deprecated.)
-
-
-Data model objects
-""""""""""""""""""
-   - TBD
-
-Orchestration
-"""""""""""""
-   - TBD
-
-Dependencies on compute services
-""""""""""""""""""""""""""""""""
-   - TBD
 
 Potential implementation
 """"""""""""""""""""""""
