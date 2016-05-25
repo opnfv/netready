@@ -7,7 +7,8 @@ NetReady: Network Readiness
 
 :Project: NetReady, https://wiki.opnfv.org/display/netready/NetReady
 :Editors: TBD
-:Authors: Georg Kunz (Ericsson), <add your name here>
+:Authors: Bin Hu (AT&T), Gergely Csatari (Nokia), Georg Kunz (Ericsson) and
+          others
 
 :Abstract: OPNFV provides an infrastructure with different SDN controller
            options to realize NFV functionality on the platform it builds. As
