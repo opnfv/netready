@@ -32,26 +32,57 @@ can be load split from either WAN GW or another VM like G5.
 
 Derrived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
-   - TBD
 
 Northbound API / Workflow
 +++++++++++++++++++++++++
    - TBD
 
+
 Data model objects
 ++++++++++++++++++
    - TBD
+
 
 Orchestration
 +++++++++++++
    - TBD
 
+
 Dependencies on compute services
 ++++++++++++++++++++++++++++++++
    - TBD
 
-Potential implementation
-++++++++++++++++++++++++
-   - TBD
 
 
+Current implementation
+~~~~~~~~~~~~~~~~~~~~~~
+
+Support for creating and managing L3VPNs is in general available in OpenStack
+Neutron by means of the BGPVPN project [BGPVPN]_. However, the BGPVPN API does
+not yet support ECMP, but this feature is on the project roadmap. Hence, it is
+currently not possible to configure the networking use case as described above.
+
+
+
+Gaps in the current solution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Given the use case description and the currently available implementation in
+OpenStack provided by BGPVPN project, we identify the following gaps:
+
+* [L3VPN-ECMP-GAP1] ECMP is current not yet supported by the BGPVPN API. The
+  Development of this feature is on the roadmap of the project, however.
+  TODO: add timeline and planned API
+
+* [L3VPN-ECMP-GAP2] It is not possible to assign the same IP to multiple Neutron
+  ports within the same Neutron subnet. This is due to the fundamental
+  requirement of avoiding IP collisions within the L2 domain which is a Neutron
+  network. A potential workaround is to create two subnets with the same IP ranges
+  and associate both with the same BGP VPN.
+
+
+
+Conclusion
+~~~~~~~~~~
+
+TBD

@@ -44,9 +44,9 @@ VRF Lets us do:
 
 2. Segregation of Traffic
 
+
 Derrived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
-   - TBD
 
 Northbound API / Workflow
 +++++++++++++++++++++++++
@@ -91,8 +91,8 @@ Dependencies on compute services
 
 
 
-Potential implementation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Current implementation
+~~~~~~~~~~~~~~~~~~~~~~
 
 Support for creating and managing L3VPNs is available in OpenStack Neutron by
 means of the BGPVPN project [BGPVPN]_. In order to create the L3VPN network
@@ -129,8 +129,9 @@ is needed:
   communicate with each other.
 
 
+
 Gaps in the current solution
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TBD
 
