@@ -5,3 +5,4 @@
 .. ==========
 
 .. [BGPVPN] http://docs.openstack.org/developer/networking-bgpvpn/
+.. [NETWORKING-SFC] https://wiki.openstack.org/wiki/Neutron/ServiceInsertionAndChaining
