@@ -77,33 +77,35 @@ Dependencies on compute services
 Current implementation
 ++++++++++++++++++++++
 
-There are multiple different technologies and corresponding projects which allow
-for creating a network topology in which traffic is directed through specific
-network elements. Among the projects considered here, is [BGPVPN]_ and
-[NETWORKING-SFC]_. We investigate the suitability of each project in the
-following.
+Different APIs have been developed to support creating a network topology and directing
+network traffic through specific network elements in specific order, for example, [BGPVPN]_
+and [NETWORKING-SFC]_. We analyzed those APIs regarding the Hub-and-Spoke use case.
 
 
 BGPVPN
 ''''''
 
 Support for creating and managing L3VPNs is in general available in OpenStack
-Neutron by means of the BGPVPN project [BGPVPN]_. However, the [BGPVPN]_ API
-does not allow to exactly create the hub-and-spoke topology outlined above in a
-clean and straightforward manner.
+Neutron by means of the BGPVPN API [BGPVPN]_. However, the [BGPVPN]_ API
+does not support creating the Hub-and-Spoke topology as outlined above, i.e.
+setting up specific VRFs of vFW(H) and other VNFs(S) within one L3VPN to direct
+the traffic from vFW(H) to VNFs(S).
 
 The [BGPVPN]_ API currently supports the concepts of network- and
 router-associations. An association in principle maps to a VRF that
 interconnects either subnets of a Neutron network (network association) or the
 networks connected by a router (router association). It does not yet allow for
-creating VRFs per VM port (port associations). This functionality is needed,
-however, to create separate VRFs per VM.
+creating VRFs per VM port (port associations) as illustrated in Hub-and-Spoke use case.
+The functionality of port association is needed, however, to create separate VRFs per VM
+in order to implement the Hub-and-Spoke use case. Furthermore, the functionality of setting
+up next-hop routing table, labels, I-RT and E-RT etc in VRF is also required to enable
+traffic direction from Hub to Spokes.
 
-Given the network- and router-association mechanisms, the following workflow
-establishes a network topology which aims to resemble the desired target
-topology. In order to compansate for the missing port association, the basic
-idea is to model separate VRFs per VM by creating a dedicated Neutron network
-with two subnets for each VRF in the hub-and-spoke topology.
+It may be argued that given the current network- and router-association mechanisms,
+the following workflow establishes a network topology which aims to achieve the desired
+traffic flow from Hub to Spokes. The basic idea is to model separate VRFs per VM
+by creating a dedicated Neutron network with two subnets for each VRF in the
+Hub-and-Spoke topology.
 
 1. Create Neutron network "hub"
   :code:`neutron net-create hub`
@@ -131,17 +133,15 @@ with two subnets for each VRF in the hub-and-spoke topology.
 
 After step 7, VMs can be booted on the corresponding networks.
 
-The resulting network topology resembles the target topology as shown in
-:numref:`l3vpn-hub-spoke-figure`. However, the workflow for creating this
-topology by means of the mechanisms provided by today's implementation deviates
-significantly from the desired workflow described above. The gap analysis in the
-next section investigates the describes the technical reasons for this.
+The resulting network topology tries to resemble our target topology as shown in
+:numref:`l3vpn-hub-spoke-figure`, and achieve the desired traffic direction from Hub to Spoke.
+However, it deviates significantly from the essence of the Hub-and-Spoke use case as
+described above in terms of desired network topology, i.e. one L3VPN with multiple
+VRFs associated with vFW(H) and other VNFs(S) separately. And this method of using
+the current network- and router-association mechanism is not scalable when there are large
+number of Spokes, and in case of scale-in and scale-out of Hub and Spokes.
 
-.. However, the [BGPVPN]_ API does
-.. not yet support Spoke and Hub use case in terms of setting up specific VRFs of vFW(H)
-.. and other VNFs(S) to create the service chain from vFW(H) to VNFs(S),
-.. including those specific I-RT and E-RT at different VRFs.
-
+The gap analysis in the next section describes the technical reasons for this.
 
 Network SFC
 '''''''''''
@@ -155,7 +155,6 @@ VRF policy approach using [NETWORKING-SFC]_ API.
 
 Hence, it is currently not possible to configure the networking use case as described above.
 
-
 Gaps in Current Solution
 ++++++++++++++++++++++++
 
@@ -168,11 +167,11 @@ we identify the following gaps:
   The workflow described above intents to mimic port associations by means of
   separate Neutron networks. Hence, the resulting workflow is overly complicated
   and not intuitive by requiring to create additional Neutron entities
-  (networks) which are not present in the target topology.
+  (networks) which are not present in the target topology. This method is also not scalable.
 
   Within the [BGPVPN]_ project, design work on port-association has started. The
   timeline for this feature is however not defined yet. As a result, creating a
-  clean hub-and-spoke topology is current not yet supported by the [BGPVPN]_ API.
+  clean Hub-and-Spoke topology is current not yet supported by the [BGPVPN]_ API.
 
 * [L3VPN-HS-GAP2] Creating a clean hub-and-spoke topology is current not yet supported by the [NETWORKING-SFC]_ API.
 
