@@ -25,6 +25,24 @@ This set of georedundancy use cases is about enabling the possiblity to select a
 backup datacenter and build the connectivity between the NFVI-s in the
 different datacenters in a programmable way.
 
+As an example the following picture (:numref:`georedundancy-before`) shows a
+multicell cloud setup where the underlay network is not fully mashed.
+
+.. figure:: images/georedundancy-before.png
+    :name:  georedundancy-before
+    :width: 25%
+
+Each datacenter (DC) is a separate OpenStack cell, region or instance. Let's
+assume that a new VNF is started in DC b with a Redundant VNF in DC d. In this
+case a direct underlay network connection is needed between DC b and DC d. The
+configuration of this connection should be programable in both DC b and DC d.
+The result of the deployment is shown in the following figure
+(:numref:`georedundancy-after`):
+
+.. figure:: images/georedundancy-after.png
+   :name:  georedundancy-after
+   :width: 25%
+
 Description
 ^^^^^^^^^^^
 There should be an API to manage the infrastructure-s networks between two
