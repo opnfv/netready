@@ -58,9 +58,57 @@ Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Support for creating and managing L3VPNs is in general available in OpenStack
-Neutron by means of the BGPVPN project [BGPVPN]_. However, the BGPVPN API does
-not yet support ECMP, but this feature is on the project roadmap. Hence, it is
-currently not possible to configure the networking use case as described above.
+Neutron by means of the BGPVPN project [BGPVPN]_. However, the BGPVPN project
+does not yet support ECMP. Hence, it is currently not possible to configure the
+networking use case as described above.
+
+Nevertheless, ECMP load balancing is on the roadmap of the BGPVPN project. The
+following workflow shows how to realize this particular use case under the
+assumption that support for static routes is available in the BGPVPN API.
+
+
+1. Create Neutron network for tenant "Blue"
+
+  ``neutron net-create --tenant-id Blue net1``
+
+
+2. Create subnet for the network of tenant "Blue"
+
+  ``neutron subnet-create --tenant-id Blue --name subnet1 net1 5.1.1.0/24``
+
+
+3. Create Neutron ports in the network of tenant "Blue"
+
+  ``neutron port-create --tenant-id Blue --name G1 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.1 net1``
+
+  ``neutron port-create --tenant-id Blue --name G2 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.2 net1``
+
+  ``neutron port-create --tenant-id Blue --name G3 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.3 net1``
+
+  ``neutron port-create --tenant-id Blue --name G4 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.4 net1``
+
+  ``neutron port-create --tenant-id Blue --name G5 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.5 net1``
+
+  ``neutron port-create --tenant-id Blue --name G6 --fixed-ip subnet_id=subnet1,ip_address=5.1.1.6 net1``
+
+
+4. Create a L3VPN for tenant "Blue"
+
+  ``neutron bgpvpn-create --tenant-id Blue --route-target AS:100 vpn1``
+
+
+5. Associate the BGPVPN with the network of tenant "Blue"
+
+  ``neutron bgpvpn-network-associate --tenant-id Blue --network-id net1 vpn1``
+
+
+6. Create static routes which point to the same target
+
+  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.1 vpn1``
+
+  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.2  vpn1``
+
+  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.3  vpn1``
 
 
 
