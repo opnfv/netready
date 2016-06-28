@@ -9,3 +9,5 @@
 .. [MULTISITE] https://wiki.opnfv.org/display/multisite/Multisite
 .. [TRICICLE] https://wiki.openstack.org/wiki/Tricircle#Requirements
 .. [OS-NETWORKING-GUIDE-ML2] http://docs.openstack.org/mitaka/networking-guide/config-ml2-plug-in.html
+.. [RFC4364] http://tools.ietf.org/html/rfc4364
+.. [RFC7432] https://tools.ietf.org/html/rfc7432
