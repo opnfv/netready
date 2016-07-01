@@ -5,38 +5,42 @@ Connection between different OpenStack regions or cloud instances
 -----------------------------------------------------------------
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 There should be an API to manage the infrastructure-s networks between two
-OpenStack regions or between two OpenStack cloud instances.
-(The only difference is the shared keystone in case of a region)
-This capability exists in the different SDN controllers, like the Add New BGP
-neighbour API of OpenDaylight. OpenStack Neutron should provide and abstracted
-API for this functionality what later calls the given SDN controllers related
-API.
+OpenStack regions or instances.
+
+The functionality behind the API depends on the underlying network providers (SDN
+controllers) and the networking setup.
+(For example OpenDaylight has an API to add new BGP neighbour.)
+
+OpenStack Neutron should provide an abstracted API for this functionality what
+calls the underlying SDN controllers API.
 
 Derrived Requirements
-^^^^^^^^^^^^^^^^^^^^^
-   - Possibility to define a remote and a local endpoint
-   - Possiblity to define an overlay/segregation technology
+~~~~~~~~~~~~~~~~~~~~~
+- Possibility to define a remote and a local endpoint
+- As in case of cells the nova-api service is shared it should be possible
+  to identify the cell in the API calls
 
 Northbound API / Workflow
-"""""""""""""""""""""""""
-   - An infrastructure network management API is needed
-   - When the endpoints are created neutron is configured to use the new network.
-     (Note: Nova networking is not considered as it is deprecated.)
++++++++++++++++++++++++++
+- An infrastructure network management API is needed
+- API call to define the remote and local infrastructure endpoints
+- When the endpoints are created neutron is configured to use the new network.
 
 Data model objects
-""""""""""""""""""
-   - TBD
+++++++++++++++++++
+- local and remote endpoint objects (Most probably IP addresses with some
+additional properties).
 
-Orchestration
-"""""""""""""
-   - TBD
+Current implementation
+~~~~~~~~~~~~~~~~~~~~~~
+  Current OpenStack implementation provides no way to set up the underlay
+  network connection.
+  OpenStack Tricicle project [TRICICLE]_
+  has plans to build up inter datacenter L2 and L3 networks.
 
-Dependencies on compute services
-""""""""""""""""""""""""""""""""
-   - TBD
-
-Potential implementation
-""""""""""""""""""""""""
-   - TBD
+Gaps in the current solution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  An infrastructure management API is missing from Neutron where the local and
+  remote endpoints of the underlay network could be configured.
