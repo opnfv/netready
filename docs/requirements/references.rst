@@ -11,3 +11,4 @@
 .. [OS-NETWORKING-GUIDE-ML2] http://docs.openstack.org/mitaka/networking-guide/config-ml2-plug-in.html
 .. [RFC4364] http://tools.ietf.org/html/rfc4364
 .. [RFC7432] https://tools.ietf.org/html/rfc7432
+.. [NEUTRON-ROUTED-NETWORKS] https://specs.openstack.org/openstack/neutron-specs/specs/newton/routed-networks.html
