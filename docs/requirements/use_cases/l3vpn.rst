@@ -9,3 +9,10 @@ L3VPN Use Cases
    l3vpn_any_to_any.rst
    l3vpn_ecmp.rst
    l3vpn_hub_and_spoke.rst
+
+
+Conclusion
+----------
+
+[**Georg: add conclusion here, covering the identified gaps of the three use
+cases above**]
