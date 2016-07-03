@@ -47,9 +47,5 @@ NetReady: Network Readiness
 
     introduction.rst
     use_cases.rst
-    current_solutions.rst
-    gap_analysis.rst
-    architecture.rst
-    implementation.rst
     summary.rst
     references.rst
