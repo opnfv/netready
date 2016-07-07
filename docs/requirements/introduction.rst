@@ -32,20 +32,20 @@ Problem Description
 Traditionally, OpenStack networking, represented typically by the OpenStack
 Neutron project, targets virtualized data center networking. This comprises
 primarily establishing and managing layer 2 network connectivity among VMs
-(Virtual Machines). Over the past releases of OpenStack, Neutron has accumulated
-an extensive feature set, covering L2 and L3 networking features such as <list
-of examples>.
+(Virtual Machines). Over the past releases of OpenStack, Neutron has grown to
+provide an extensive feature set, covering L2 and L3 networking features such as
+virtual layer 2 networks, virtual routers, BGP VPNs and others.
 
 It is often stated that NFV imposes additional requirements on the networking
 architecture and feature set of the underlying NFVI beyond those of data center
 networking. For instance, the NFVI needs to establish and manage connectivity
 beyond the data center to the WAN (Wide Area Network). Moreover, NFV networking
-use cases often abstract from L2 connectivity and for example focus on L3-only
+use cases often abstract from L2 connectivity and instead focus on L3-only
 connectivity. Hence, the NFVI networking architecture needs to be flexible
 enough to be able to meet the requirements of NFV-related use cases in addition
 to traditional data center networking.
 
-It is an ongoing debate how well the current OpenStack networking architecure
+It is an ongoing debate how well the current OpenStack networking architecture
 can meet the additional requirements of NFV networking. Hence, a thorough
 analysis of NFV networking requirements and their relation to the OpenStack
 networking architecture is needed.
@@ -64,14 +64,18 @@ following:
   Programming Interfaces) and data models needed to realize a given NFV use
   case.
 
-- The list of use cases is not considered to be all-emcompassing but it
+- The list of use cases is not considered to be all-encompassing but it
   represents a carefully selected set of use cases that are considered to be
-  relevant at the time of writing. More use cases may be added over time.
+  relevant at the time of writing. More use cases may be added over time. The
+  authors are very open to suggestions, reviews, clarifications, corrections
+  and feedback in general.
 
 - This document contains a thorough analysis of the gaps in the current
   OpenStack networking architecture with respect to the requirements imposed
-  by the selected NFV use cases.
+  by the selected NFV use cases. To this end, we analyze existing functionality
+  in OpenStack networking.
 
-- This document describes the proposed improvements and complementary solutions
-  needed to enable OpenStack to fulfill the identified NFV requirements.
+- This document will in future revisions describe the proposed improvements
+  and complementary solutions needed to enable OpenStack to fulfill the
+  identified NFV requirements.
 

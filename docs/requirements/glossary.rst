@@ -3,9 +3,10 @@
 
 **Definition of terms**
 
-Different SDOs and communities use different terminology related to
-NFV/Cloud/SDN. This list tries to define an OPNFV terminology,
-mapping/translating the OPNFV terms to terminology used in other contexts.
+Different standards developing organizations and communities use different
+terminology related to Network Function Virtualization, Cloud Computing, and
+Software Defined Networking. This list defines the terminology in the contexts
+of this document.
 
 
 .. glossary::
@@ -54,7 +55,7 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
 
     VM
         Virtual Machine. Virtualized computation environment that behaves like a
-        physical computer/server by (re-)creating the computing architecture of a
+        physical computer/server by modeling the computing architecture of a
         real or hypothetical computer.
 
     Virtual network
