@@ -28,15 +28,11 @@ Data model objects
 ++++++++++++++++++
    - No changes in the data model
 
-Orchestration
-+++++++++++++
-   None.
-
-Dependencies on compute services
-++++++++++++++++++++++++++++++++
-   None.
+Current implementation
+~~~~~~~~~~~~~~~~~~~~~~
+Only admin users can manage provider networks [OS-NETWORKING-GUIDE-ML2]_.
 
 Potential implementation
-++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~
    - Policy engine shall be able to handle a new provider network creation and modification related policy
    - When a provider network is created or modified neutron should check the authority with the policy engine instead of requesting administrative rights
