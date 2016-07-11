@@ -2,17 +2,22 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) Bin Hu
 
-ECMP Load Splitting Case (Anycast)
-----------------------------------
+L3VPN: ECMP Load Splitting Case (Anycast)
+-----------------------------------------
 
 Description
 ~~~~~~~~~~~
 
-There are 2 hosts (compute nodes). SDN Controller A and vRouter A are provided by
-Vendor A, and run on host A. SDN Controller B and vRouter B are provided by
+In this use case, multiple instances of a VNF are reachable through the same IP.
+The networking infrastructure is then responsible for spreading the network load
+across the VNF instances using Equal-Cost Multi-Path (ECMP) or perform a
+fail-over in case of a VNF failure.
+
+There are 2 hosts (compute nodes). SDN Controller A and vForwarder A are provided by
+Vendor A, and run on host A. SDN Controller B and vForwarder B are provided by
 Vendor B, and run on host B.
 
-There is 1 tenant. Tenant 1 creates L3VPN Blue with subnet 10.1.1.0/24.
+There is one tenant. Tenant 1 creates L3VPN Blue with subnet 10.1.1.0/24.
 
 The network topology is shown in :numref:`l3vpn-ecmp-figure`:
 
@@ -30,7 +35,7 @@ Here, the Network VRF Policy Resource is ``ECMP/AnyCast``. Traffic to **Anycast 
 can be load split from either WAN GW or another VM like G5.
 
 
-Derrived Requirements
+Derived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
 
 Northbound API / Workflow
@@ -59,12 +64,46 @@ Current implementation
 
 Support for creating and managing L3VPNs is in general available in OpenStack
 Neutron by means of the BGPVPN project [BGPVPN]_. However, the BGPVPN project
-does not yet support ECMP. Hence, it is currently not possible to configure the
-networking use case as described above.
+does not yet fully support ECMP as described in the following.
 
-Nevertheless, ECMP load balancing is on the roadmap of the BGPVPN project. The
-following workflow shows how to realize this particular use case under the
-assumption that support for static routes is available in the BGPVPN API.
+There are (at least) two different approached to configuring ECMP:
+
+1. Using Neutron ports with identical IP addresses, or
+
+2. Using Neutron ports with unique IPs addresses and creating static routes to a
+   common IP prefix with next hops pointing to the unique IP addresses.
+
+
+
+Ports with identical IP addresses
++++++++++++++++++++++++++++++++++
+
+In this approach, multiple Neutron ports using the same IP address are created.
+In the current Neutron architecture, a port has to reside in a specific Neutron
+network. However, re-using the same IP address multiple times in a given Neutron
+network is not possible as this would create an IP collision. As a consequence,
+creating one Neutron network for each port is required.
+
+Given multiple Neutron networks, the BGPVPN API allows for associating those
+networks with the same VPN. It is then up to the networking backend to implement
+ECMP load balancing. This behavior and the corresponding API for configuring the
+behavior is currently not available. It is nevertheless on the road map of the
+BGPVPN project.
+
+**[ Georg: we could add an API usage example here similarly to the one below]**
+
+
+Static Routes to ports with unique IP addresses
++++++++++++++++++++++++++++++++++++++++++++++++
+
+In this approach, Neutron ports are assigned unique IPs and static routes
+pointing to the same ECMP load-balanced prefix are created. The static routes
+define the unique Neutron port IPs as next-hop addresses.
+
+Currently, the API for static routes is not yet available in the BGPVPN project,
+but it is on the road map. The following work flow shows how to realize this
+particular use case under the assumption that support for static routes is
+available in the BGPVPN API.
 
 
 1. Create Neutron network for tenant "Blue"
@@ -106,9 +145,9 @@ assumption that support for static routes is available in the BGPVPN API.
 
   ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.1 vpn1``
 
-  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.2  vpn1``
+  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.2 vpn1``
 
-  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.3  vpn1``
+  ``neutron bgpvpn-static-route-add --tenant-id Blue --cidr 10.1.1.5/32 --nexthop-ip 5.1.1.3 vpn1``
 
 
 
@@ -118,19 +157,41 @@ Gaps in the current solution
 Given the use case description and the currently available implementation in
 OpenStack provided by BGPVPN project, we identify the following gaps:
 
-* [L3VPN-ECMP-GAP1] ECMP is current not yet supported by the BGPVPN API. The
-  Development of this feature is on the roadmap of the project, however.
-  TODO: add timeline and planned API
+* [L3VPN-ECMP-GAP1] Static routes are not yet supported by the BGPVPN project.
 
-* [L3VPN-ECMP-GAP2] It is not possible to assign the same IP to multiple Neutron
-  ports within the same Neutron subnet. This is due to the fundamental
-  requirement of avoiding IP collisions within the L2 domain which is a Neutron
-  network. A potential workaround is to create two subnets with the same IP ranges
-  and associate both with the same BGP VPN.
+  Currently, no API for configuring static routes is available in the BGPVPN
+  project. This feature is on the road map, however.
 
 
+* [L3VPN-ECMP-GAP2] Behavior not defined for multiple Neutron ports of the same
+  IP
 
-Conclusion
-~~~~~~~~~~
+  The Neutron and BGPVPN API allow for creating multiple ports with the same
+  IP in different networks and associating the networks with the same VPN. The
+  exact behavior of this configuration is however not defined and an API for
+  configuring the behavior (load-balancing or fail-over) is missing. Development
+  of this feature is on the road map of the project, however.
 
-TBD
+
+* [L3VPN-ECMP-GAP3] It is not possible to assign the same IP to multiple Neutron
+  ports within the same Neutron subnet.
+
+  This is due to the fundamental requirement of avoiding IP collisions within
+  the L2 domain which is a Neutron network.
+
+
+Conclusions
+~~~~~~~~~~~
+
+In the context of the ECMP use case, three gaps have been
+identified. Gap [L3VPN-ECMP-GAP1] and [L3VPN-ECMP-GAP2] are missing or undefined
+functionality in the BGPVPN project. There is no architectural hindrance
+preventing the implementation of the missing features in the BGPVPN project as
+well as in Neutron.
+
+The third gap [L3VPN-ECMP-GAP3] is based on the fact that Neutron ports always
+have to exist in a Neutron network. As a consequence, in order to create ports
+with the same IP, multiple networks must be used. This port-network binding
+will most likely not be relaxed in future releases of Neutron to retain backwards
+compatibility. A clean alternative to Neutron can instead provide more modeling
+flexibility.
