@@ -29,13 +29,6 @@ solutions.
 Problem Description
 -------------------
 
-Traditionally, OpenStack networking, represented typically by the OpenStack
-Neutron project, targets virtualized data center networking. This comprises
-primarily establishing and managing layer 2 network connectivity among VMs
-(Virtual Machines). Over the past releases of OpenStack, Neutron has grown to
-provide an extensive feature set, covering L2 and L3 networking features such as
-virtual layer 2 networks, virtual routers, BGP VPNs and others.
-
 It is often stated that NFV imposes additional requirements on the networking
 architecture and feature set of the underlying NFVI beyond those of data center
 networking. For instance, the NFVI needs to establish and manage connectivity
@@ -44,6 +37,13 @@ use cases often abstract from L2 connectivity and instead focus on L3-only
 connectivity. Hence, the NFVI networking architecture needs to be flexible
 enough to be able to meet the requirements of NFV-related use cases in addition
 to traditional data center networking.
+
+Traditionally, OpenStack networking, represented typically by the OpenStack
+Neutron project, targets virtualized data center networking. This comprises
+originally establishing and managing layer 2 network connectivity among VMs
+(Virtual Machines). Over the past releases of OpenStack, Neutron has grown to
+provide an extensive feature set, covering both L2 as well as L3 networking
+services such as virtual routers, NATing, VPNaaS and BGP VPNs.
 
 It is an ongoing debate how well the current OpenStack networking architecture
 can meet the additional requirements of NFV networking. Hence, a thorough
