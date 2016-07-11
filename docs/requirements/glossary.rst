@@ -47,21 +47,26 @@ of this document.
         on that system, often managing a variety of computer operations. In
         OpenStack terminology, a server is a VM instance.
 
+    vForwarder
+        vForwarder is used as generic and vendor neutral term for a software
+        packet forwarder. Concrete examples includes OpenContrail vRouter,
+        OpenvSwitch, Cisco VTF.
+
     VIM
         Virtualized Infrastructure Manager. Functional block that is responsible
         for controlling and managing the NFVI compute, storage and network
         resources, usually within one operator's Infrastructure Domain, e.g.
         NFVI Point of Presence (NFVI-PoP).
 
-    VM
-        Virtual Machine. Virtualized computation environment that behaves like a
-        physical computer/server by modeling the computing architecture of a
-        real or hypothetical computer.
-
     Virtual network
         Virtual network routes information among the network interfaces of VM
         instances and physical network interfaces, providing the necessary
         connectivity.
+
+    VM
+        Virtual Machine. Virtualized computation environment that behaves like a
+        physical computer/server by modeling the computing architecture of a
+        real or hypothetical computer.
 
     VNF
         Virtualized Network Function. Implementation of an Network Function

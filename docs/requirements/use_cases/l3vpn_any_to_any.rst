@@ -12,8 +12,12 @@ managed within one cloud or multiple clouds. Jointly, those VIMs (e.g. OpenStack
 instances) and SDN Controllers work together in an interoperable framework to
 create L3 services in the Service Providers' virtualized network infrastructure.
 
-Three use cases of creating L3VPN service by multiple SDN Controllers are described
-as follows.
+While interoperability between SDN controllers and the corresponding data planes
+is ensured based on standardized protocols (e.g., [RFC4364]_ and [RFC7432]_),
+the integration and management of different SDN domains from the VIM is not
+clearly defined. Hence, this section analyses three L3VPN use cases involving
+multiple SDN Controllers.
+
 
 
 Any-to-Any Base Case
@@ -26,9 +30,9 @@ This any-to-any use case is the base scenario, providing layer 3 connectivity
 between VNFs in the same L3VPN while separating the traffic and IP address
 spaces of different L3VPNs belonging to different tenants.
 
-There are 2 hosts (compute nodes). SDN Controller A and vRouter A are provided by
-Vendor A, and run on host A. SDN Controller B and vRouter B are provided by
-Vendor B, and run on host B.
+There are 2 hosts (compute nodes). SDN Controller A and vForwarder A are
+provided by Vendor A and run on host A. SDN Controller B and vForwarder B
+are provided by Vendor B, and run on host B.
 
 There are 2 tenants. Tenant 1 creates L3VPN Blue with 2 subnets: 10.1.1.0/24 and
 10.3.7.0/24.  Tenant 2 creates L3VPN Red with 1 subnet and an overlapping
@@ -39,13 +43,15 @@ address space: 10.1.1.0/24. The network topology is shown in
    :name:  l3vpn-any2any-figure
    :width: 100%
 
-In L3VPN Blue, VMs G1 (10.1.1.5) and G2 (10.3.7.9) are spawned on host A, and attached to 2 subnets
-(10.1.1.0/24 and 10.3.7.0/24) and assigned IP addresses respectively. VMs G3 (10.1.1.6) and
-G4 (10.3.7.10) are spawned on host B, and attached to 2 subnets (10.1.1.0/24 and 10.3.7.0/24)
-and assigned IP addresses respectively.
+In L3VPN Blue, VMs G1 (10.1.1.5) and G2 (10.3.7.9) are spawned on host A, and
+attached to 2 subnets (10.1.1.0/24 and 10.3.7.0/24) and assigned IP addresses
+respectively. VMs G3 (10.1.1.6) and G4 (10.3.7.10) are spawned on host B, and
+attached to 2 subnets (10.1.1.0/24 and 10.3.7.0/24) and assigned IP addresses
+respectively.
 
-In L3VPN Red, VM G5 (10.1.1.5) is spawned on host A, and attached to subnet 10.1.1.0/24. VM G6
-(10.1.1.6) is spawned on host B, and attached to the same subnet 10.1.1.0/24.
+In L3VPN Red, VM G5 (10.1.1.5) is spawned on host A, and attached to subnet
+10.1.1.0/24. VM G6 (10.1.1.6) is spawned on host B, and attached to the same
+subnet 10.1.1.0/24.
 
 
 
@@ -57,13 +63,13 @@ Northbound API / Workflow
 
 [**Georg: this section needs to be made more readable**]
 
-Exemplary workflow is described as follows:
+An example of the desired workflow is as follows:
 
 1. Create Network
 
 2. Create Network VRF Policy Resource ``Any-to-Any``
 
-  2.1. This sets up that when this tenant is put on a HOST that:
+  2.1. This policy causes the following configuration when a VM of this tenant is spawned on a host:
 
     2.1.1. There will be a RD assigned per VRF
 
@@ -71,13 +77,13 @@ Exemplary workflow is described as follows:
 
 3. Create Subnet
 
-4. Create Port (subnet, network vrf policy resource). This causes controller to:
+4. Create Port (subnet, network VRF policy resource). This causes the controller to:
 
-  4.1. Create vrf in vRouter's FIB, or Update vrf if already exists
+  4.1. Create a VRF in vForwarder's FIB, or update VRF if it already exists
 
-  4.2. Install an entry for Guest's HOST-Route in FIBs of Vrouters serving this tenant Virtual Network
+  4.2. Install an entry for the guest's host route in FIBs of the vForwarder serving this tenant's virtual network
 
-  4.3. Announce Guest HOST-Route to WAN-GW via MP-BGP
+  4.3. Announce guest host route to WAN-GW via MP-BGP
 
 
 
