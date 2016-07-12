@@ -8,6 +8,6 @@ The following sections address networking use cases that have been identified to
 
 .. toctree::
     use_cases/l3vpn.rst
-    use_cases/port_abstraction.rst
+    use_cases/service-binding-pattern.rst
     use_cases/programmable_provisioning.rst
     use_cases/georedundancy.rst

@@ -3,8 +3,8 @@
 .. (c) Georg Kunz
 
 
-Port Abstraction
-----------------
+Service Binding Design Pattern
+------------------------------
 
 Description
 ^^^^^^^^^^^
@@ -49,7 +49,13 @@ Requirements
 Data model
 """"""""""
 
-The envisioned data model of the port abstraction model is as follows:
+This section describes a general concept for a data model and a corresponding
+API. It is not intended that these entities are to be implemented exactly as
+described. Instead, they are meant to show a design pattern for future network
+service models and their corresponding APIs. For example, the "service" entity
+should hold all required attributes for a specific service, for instance a given
+L3VPN service. Hence, there would be no entity "service" but rather "L3VPN".
+
 
 * ``instance-port``
 
@@ -63,7 +69,7 @@ The envisioned data model of the port abstraction model is as follows:
 * ``interface``
 
   An interface object is a logical abstraction of an instance-port. It allows to
-  build hierachies of interfaces by means of a reference to a parent interface.
+  build hierarchies of interfaces by means of a reference to a parent interface.
   Each interface represents a subset of the packets traversing a given port or
   parent interface after applying a layer 2 segmentation mechanism specific to the
   interface type.
@@ -98,7 +104,10 @@ The envisioned data model of the port abstraction model is as follows:
 Northbound API
 """"""""""""""
 
-The API for manipulating the data model is as follows:
+An exemplary API for manipulating the data model is described below. As for the
+data model, this API is not intended to be a concrete API, but rather an example
+for a design pattern that clearly separates ports from services and service
+bindings.
 
 * ``instance-port-{create,delete} <name>``
 
@@ -134,7 +143,57 @@ The compute service needs to be enabled to consume instance ports instead of
 classic Neutron ports.
 
 
-Implementation Proposal
-^^^^^^^^^^^^^^^^^^^^^^^
+Current Implementation
+^^^^^^^^^^^^^^^^^^^^^^
 
-TBD
+The core Neutron API [**describe what is meant by that**] does not follow the
+service binding design pattern. For example, a port has to exist in a Neutron
+network - specifically it has to be created for a particular Neutron network. It
+is not possible to create just a port and assign it to a network later on as
+needed. As a result, a port cannot be moved from one network to another, for
+instance.
+
+Regarding the shared service function use case outlined above, there is an
+ongoing activity in Neutron [VLAN-AWARE-VMs]_. The solution proposed by this
+activity allows for creating a trunk-port and multiple sub-ports per Neutron
+port which can be bound to multiple networks (one network per sub-port). This
+allows for binding a single VNIC to multiple networks and allow the
+corresponding VMs to handle the network segmentation (VLAN tagged traffic)
+itself. While this is a step in the direction of binding multiple services
+(networks) to a port, it is limited by the fundamental assumption of Neutron
+that a port has to exist on a given network.
+
+There are extensions of Neutron that follow the service binding design pattern
+more closely. An example is the BGPVPN project. A rough mapping of the service
+binding design pattern to the data model of the BGPVPN project is as follows:
+
+* instance-port -> Neutron port
+
+* service -> VPN
+
+* service-port -> network association
+
+This example shows that extensions of Neutron can in fact follow the described
+design pattern in their respective data model and APIs.
+
+
+
+Conclusions
+^^^^^^^^^^^
+
+In conclusion, the design decisions taken for the core Neutron API and data
+model do not follow the service binding model. As a result, it is hard to
+implement certain use cases which rely on a flexible binding of services to
+ports. Due to the backwards compatibility to the large amount of existing
+Neutron code, it is unlikely that the core Neutron API will adapt to this design
+pattern.
+
+New extension to Neutron however are relatively free to choose their data model
+and API - within the architectural boundaries of Neutron of course. In order to
+provide the flexibility needed, extensions shall aim for following the service
+binding design pattern if possible.
+
+For the same reason, new networking frameworks complementing Neutron, such as
+Gluon, shall follow this design pattern and create the foundation for
+implementing networking services accordingly.
+

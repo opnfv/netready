@@ -5,10 +5,11 @@
 .. ==========
 
 .. [BGPVPN] http://docs.openstack.org/developer/networking-bgpvpn/
-.. [NETWORKING-SFC] https://wiki.openstack.org/wiki/Neutron/ServiceInsertionAndChaining
 .. [MULTISITE] https://wiki.opnfv.org/display/multisite/Multisite
-.. [TRICICLE] https://wiki.openstack.org/wiki/Tricircle#Requirements
+.. [NETWORKING-SFC] https://wiki.openstack.org/wiki/Neutron/ServiceInsertionAndChaining
+.. [NEUTRON-ROUTED-NETWORKS] https://specs.openstack.org/openstack/neutron-specs/specs/newton/routed-networks.html
 .. [OS-NETWORKING-GUIDE-ML2] http://docs.openstack.org/mitaka/networking-guide/config-ml2-plug-in.html
 .. [RFC4364] http://tools.ietf.org/html/rfc4364
 .. [RFC7432] https://tools.ietf.org/html/rfc7432
-.. [NEUTRON-ROUTED-NETWORKS] https://specs.openstack.org/openstack/neutron-specs/specs/newton/routed-networks.html
+.. [TRICICLE] https://wiki.openstack.org/wiki/Tricircle#Requirements
+.. [VLAN-AWARE-VMs] https://blueprints.launchpad.net/neutron/+spec/vlan-aware-vms
