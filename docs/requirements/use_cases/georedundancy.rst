@@ -43,7 +43,7 @@ considered how the provisioning of physical resources is handled by the SDN
 controllers to interconnect the two datacenters.
 
 As an example the following picture (:numref:`georedundancy-before`) shows a
-multicell cloud setup where the underlay network is not fully mashed.
+multicell cloud setup where the underlay network is not fully meshed.
 
 .. figure:: images/georedundancy-before.png
     :name:  georedundancy-before
