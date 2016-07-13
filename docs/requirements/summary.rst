@@ -14,3 +14,12 @@ architecture.
 Based on the gap analyses, we draw the following conclusions:
 
 * <add conclusions, to be agreed>
+* Besides current requirements and gaps identified in support of NFV networking,
+  more and more new NFV networking services are to be innovated in the near future.
+  Those innovations will bring additional requirements, and more significant gaps
+  will be expected. On the other hand, NFV networking business requires it
+  to be made easy to innovate, quick to develop, and agile to deploy and operate.
+  Therefore, a model-driven, extensible framework is expected to support NFV
+  networking on-demand in order to accelerate time-to-market and achieve business
+  agility for innovations in NFV networking business.
+

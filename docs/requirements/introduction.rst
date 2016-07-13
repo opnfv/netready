@@ -29,6 +29,12 @@ solutions.
 Problem Description
 -------------------
 
+Telco ecosystem's movement toward cloud domain results in Network Function Virtualization
+that is discussed and specified in ETSI NFV. This movement opens up many green field
+areas which are full of potentials of growth in both business and technology. This new
+NFV domain brings new business opportunities and new market segments as well as emerging
+technologies that are exploratory and experimental in nature, especially in NFV networking.
+
 It is often stated that NFV imposes additional requirements on the networking
 architecture and feature set of the underlying NFVI beyond those of data center
 networking. For instance, the NFVI needs to establish and manage connectivity
@@ -50,6 +56,19 @@ can meet the additional requirements of NFV networking. Hence, a thorough
 analysis of NFV networking requirements and their relation to the OpenStack
 networking architecture is needed.
 
+Besides current additional use cases and requirements of NFV networking,
+more importantly, because of the **green field** nature of NFV, it is foreseen
+that there will be more and more new NFV networking use cases and services,
+which will bring new business, in near future. The challenges for telco ecosystem
+are to:
+
+- Quickly catch the new business opportunity;
+
+- Execute it in agile way so that we can accelerate the time-to-market and improve
+  the business agility in offering our customers with innovative NFV services.
+
+Therefore, it is critically important for telco ecosystem to quickly develop and deploy
+new NFV networking APIs on-demand based on market need.
 
 Goals
 -----
@@ -74,6 +93,11 @@ following:
   OpenStack networking architecture with respect to the requirements imposed
   by the selected NFV use cases. To this end, we analyze existing functionality
   in OpenStack networking.
+
+- Beyond current list of use cases and gap analysis in the document, more importantly,
+  it is the future of NFV networking that needs to be made easy to innovate, quick to
+  develop, and agile to deploy and operate. A model-driven, extensible framework
+  is expected to achieve agility for innovations in NFV networking.
 
 - This document will in future revisions describe the proposed improvements
   and complementary solutions needed to enable OpenStack to fulfill the
