@@ -14,5 +14,16 @@ L3VPN Use Cases
 Conclusion
 ----------
 
-[**Georg: add conclusion here, covering the identified gaps of the three use
-cases above**]
+Based on the gap analyses of the three specific L3VPN use cases we conclude that
+there are gaps in both the functionality provided by the BGPVPN project as well
+as the support for multiple backends in Neutron.
+
+Some of the identified gaps [L3VPN-ECMP-GAP1, L3VPN-ECMP-GAP2, L3VPN-HS-GAP3]
+in the BGPVPN project are merely missing functionality which can be integrated
+in the existing OpenStack networking architecture.
+
+Other gaps, such as the inability to explicitly disable the layer 2 semantics of
+Neutron networks [L3VPN-HS-GAP1] or the tight integration of ports and networks
+[L3VPN-HS-GAP2] hinder a clean integration of the needed functionality. In order
+to close these gaps, fundamental changes in Neutron or alternative approaches
+need to be investigated.

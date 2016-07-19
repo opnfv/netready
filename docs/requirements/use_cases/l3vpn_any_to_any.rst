@@ -55,13 +55,13 @@ subnet 10.1.1.0/24.
 
 
 
-Derrived Requirements
+Derived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
 
 Northbound API / Workflow
 +++++++++++++++++++++++++
 
-[**Georg: this section needs to be made more readable**]
+.. **Georg: this section needs to be made more readable**
 
 An example of the desired workflow is as follows:
 
@@ -85,21 +85,6 @@ An example of the desired workflow is as follows:
 
   4.3. Announce guest host route to WAN-GW via MP-BGP
 
-
-
-Data model objects
-++++++++++++++++++
-   - TBD
-
-
-Orchestration
-+++++++++++++
-   - TBD
-
-
-Dependencies on compute services
-++++++++++++++++++++++++++++++++
-   - TBD
 
 
 
@@ -181,16 +166,18 @@ Comments:
 
 * The ports are associated indirectly to the VPN through their networks.
 
-* The BGPVPN backend takes care of distributing the /32 routes to the OVR instances
-  and assigning appropriate RD values.
+* The BGPVPN backend takes care of distributing the /32 routes to the vForwarder
+  instances and assigning appropriate RD values.
 
 
 
 Gaps in the current solution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are no gaps in the currently available solution which prevent realizing
-this particular use case.
-[**Georg: there are no gaps in terms of functionality provided by the BGPVPN
-project. However, a better analysis of the multi-backend support in Neutron is
-needed**]
+In terms of the functionality provided by the BGPVPN project, there are no gaps
+preventing this particular use case from a L3VPN perspective.
+
+However, in order to support the multi-vendor aspects of this use case, a better
+support for integrating multiple backends is needed (see previous use case).
+
+

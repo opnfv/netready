@@ -35,29 +35,6 @@ Here, the Network VRF Policy Resource is ``ECMP/AnyCast``. Traffic to **Anycast 
 can be load split from either WAN GW or another VM like G5.
 
 
-Derived Requirements
-~~~~~~~~~~~~~~~~~~~~~
-
-Northbound API / Workflow
-+++++++++++++++++++++++++
-   - TBD
-
-
-Data model objects
-++++++++++++++++++
-   - TBD
-
-
-Orchestration
-+++++++++++++
-   - TBD
-
-
-Dependencies on compute services
-++++++++++++++++++++++++++++++++
-   - TBD
-
-
 
 Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -90,7 +67,7 @@ ECMP load balancing. This behavior and the corresponding API for configuring the
 behavior is currently not available. It is nevertheless on the road map of the
 BGPVPN project.
 
-**[ Georg: we could add an API usage example here similarly to the one below]**
+.. **Georg: we could add an API usage example here similarly to the one below**
 
 
 Static Routes to ports with unique IP addresses

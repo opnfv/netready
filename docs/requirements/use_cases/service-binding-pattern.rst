@@ -63,7 +63,7 @@ L3VPN service. Hence, there would be no entity "service" but rather "L3VPN".
   instance by the compute service (Nova).
 
   *Attributes:* Since an instance-port is a layer 2 device, its attributes
-  include the MAC address, MTU and others (TBD).
+  include the MAC address, MTU and others.
 
 
 * ``interface``

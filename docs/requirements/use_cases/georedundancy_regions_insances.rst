@@ -11,12 +11,12 @@ OpenStack regions or instances.
 
 The functionality behind the API depends on the underlying network providers (SDN
 controllers) and the networking setup.
-(For example OpenDaylight has an API to add new BGP neighbour.)
+(For example OpenDaylight has an API to add new BGP neighbor.)
 
 OpenStack Neutron should provide an abstracted API for this functionality what
 calls the underlying SDN controllers API.
 
-Derrived Requirements
+Derived Requirements
 ~~~~~~~~~~~~~~~~~~~~~
 - Possibility to define a remote and a local endpoint
 - As in case of cells the nova-api service is shared it should be possible

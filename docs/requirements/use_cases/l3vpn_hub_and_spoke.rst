@@ -19,8 +19,8 @@ Furthermore, there is no layer 2 connectivity between the VNFs.
 
 In addition, in this use case, the deployed network infrastructure comprises
 equipment from two different vendors, Vendor A and Vendor B. There are 2 hosts
-(compute nodes). SDN Controller A and vRouter A are provided by Vendor A, and
-run on host A. SDN Controller B and vRouter B are provided by Vendor B, and run
+(compute nodes). SDN Controller A and vForwarder A are provided by Vendor A, and
+run on host A. SDN Controller B and vForwarder B are provided by Vendor B, and run
 on host B.
 
 There is 1 tenant. Tenant 1 creates L3VPN Blue with 2 subnets: 10.1.1.0/24 and 10.3.7.0/24.
@@ -44,21 +44,21 @@ Derived Requirements
 Northbound API / Workflow
 +++++++++++++++++++++++++
 
-[**Georg: this needs to be made more readable / explanatory**]
+.. Georg: this needs to be made more readable / explanatory
 
 Exemplary vFW(H) Hub VRF is as follows:
 
-* RD1 10.1.1.5  IP_OVR1 Label1
-* RD1 0/0 IP_OVR1 Label1
+* RD1 10.1.1.5  IP_vForwarder1 Label1
+* RD1 0/0 IP_vForwarder1 Label1
 * Label 1 Local IF (10.1.1.5)
-* RD3 10.3.7.9  IP_OVR1 Label2
-* RD2 10.1.1.6  IP_OVR2 Label3
-* RD4 10.3.7.10 IP_OVR2 Label3
+* RD3 10.3.7.9  IP_vForwarder1 Label2
+* RD2 10.1.1.6  IP_vForwarder2 Label3
+* RD4 10.3.7.10 IP_vForwarder2 Label3
 
 Exemplary VNF1(S) Spoke VRF is as follows:
 
-* RD1 0/0 IP_OVR1 Label1
-* RD3 10.3.7.9  IP_OVR1 Label2
+* RD1 0/0 IP_vForwarder1 Label1
+* RD3 10.3.7.9  IP_vForwarder1 Label2
 
 Exemplary workflow is described as follows:
 
@@ -77,10 +77,6 @@ Exemplary workflow is described as follows:
   4.2. VRF Policy Resource, [H | S]
 
 
-Data model objects
-++++++++++++++++++
-   - TBD
-
 
 Current implementation
 ++++++++++++++++++++++
@@ -95,16 +91,10 @@ BGPVPN
 ''''''
 
 Support for creating and managing L3VPNs is in general available in OpenStack
-Neutron by means of the BGPVPN API [BGPVPN]_. However, the [BGPVPN]_ API
-does not support creating the Hub-and-Spoke topology as outlined above, i.e.
-setting up specific VRFs of vFW(H) and other VNFs(S) within one L3VPN to direct
-the traffic from vFW(H) to VNFs(S).
-[**Georg: I'd like to move the last statement further down as this is already a
-conclusion without having done any kind of analysis.**]
-
-The [BGPVPN]_ API currently supports the concepts of network- and
-router-associations. An association maps Neutron network objects (networks and
-routers) to a VRF with the following semantics:
+Neutron by means of the BGPVPN API [BGPVPN]_.  The [BGPVPN]_ API currently
+supports the concepts of network- and router-associations. An association maps
+Neutron network objects (networks and routers) to a VRF with the following
+semantics:
 
 * A *network association* interconnects all subnets and ports of a Neutron
   network by binding them to a given VRF
@@ -205,7 +195,8 @@ or not the service chain from vFW(H) to VNFs(S) can be created in the way of L3V
 VRF policy approach using [NETWORKING-SFC]_ API.
 
 Hence, it is currently not possible to configure the networking use case as described above.
-**Georg: we need to look deeper into SFC to substantiate our claim here.**
+
+.. **Georg: we need to look deeper into SFC to substantiate our claim here.**
 
 
 Gaps in the Current Solution
