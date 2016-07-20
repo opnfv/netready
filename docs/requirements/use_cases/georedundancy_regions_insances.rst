@@ -37,7 +37,7 @@ Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~
   Current OpenStack implementation provides no way to set up the underlay
   network connection.
-  OpenStack Tricicle project [TRICICLE]_
+  OpenStack Tricircle project [TRICIRCLE]_
   has plans to build up inter datacenter L2 and L3 networks.
 
 Gaps in the current solution
