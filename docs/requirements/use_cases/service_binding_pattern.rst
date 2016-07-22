@@ -18,7 +18,7 @@ this use case:
 
   Typically, a vNIC is bound to a single network. Hence, in order to directly
   connect a service function to multiple networks at the same time, multiple vNICs
-  are needed - each vNIC binding the service function to a separate network. For
+  are needed - each vNIC binds the service function to a separate network. For
   service functions requiring connectivity to a large number of networks, this
   approach does not scale as the number of vNICs per VM is limited and additional
   vNICs occupy additional resources on the hypervisor.
@@ -146,12 +146,11 @@ classic Neutron ports.
 Current Implementation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The core Neutron API [**describe what is meant by that**] does not follow the
-service binding design pattern. For example, a port has to exist in a Neutron
-network - specifically it has to be created for a particular Neutron network. It
-is not possible to create just a port and assign it to a network later on as
-needed. As a result, a port cannot be moved from one network to another, for
-instance.
+The core Neutron API does not follow the service binding design pattern. For
+example, a port has to exist in a Neutron network - specifically it has to be
+created for a particular Neutron network. It is not possible to create just a
+port and assign it to a network later on as needed. As a result, a port cannot
+be moved from one network to another, for instance.
 
 Regarding the shared service function use case outlined above, there is an
 ongoing activity in Neutron [VLAN-AWARE-VMs]_. The solution proposed by this

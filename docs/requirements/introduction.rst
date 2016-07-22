@@ -6,10 +6,10 @@ Introduction
 
 This document represents and describes the results of the OPNFV NetReady
 (Network Readiness) project. Specifically, the document comprises a selection of
-NFV-related networking use cases and their networking requirements, a
-corresponding gap analysis of the aforementioned requirements with respect to
-the current OpenStack networking architecture and a description of potential
-solutions and improvements.
+NFV-related networking use cases and their networking requirements. For every
+use case, it furthermore presents a gap analysis of the aforementioned
+requirements with respect to the current OpenStack networking architecture.
+Finally it provides a description of potential solutions and improvements.
 
 
 Scope
@@ -29,11 +29,12 @@ solutions.
 Problem Description
 -------------------
 
-Telco ecosystem's movement toward cloud domain results in Network Function Virtualization
-that is discussed and specified in ETSI NFV. This movement opens up many green field
-areas which are full of potentials of growth in both business and technology. This new
-NFV domain brings new business opportunities and new market segments as well as emerging
-technologies that are exploratory and experimental in nature, especially in NFV networking.
+Telco ecosystem's movement towards the cloud domain results in Network Function
+Virtualization that is discussed and specified in ETSI NFV. This movement opens
+up many green field areas which are full of potential growth in both business
+and technology. This new NFV domain brings new business opportunities and new
+market segments as well as emerging technologies that are exploratory and
+experimental in nature, especially in NFV networking.
 
 It is often stated that NFV imposes additional requirements on the networking
 architecture and feature set of the underlying NFVI beyond those of data center

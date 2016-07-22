@@ -12,7 +12,7 @@ NetReady: Network Readiness
 
 :Abstract: OPNFV provides an infrastructure with different SDN controller
            options to realize NFV functionality on the platform it builds. As
-           OPNFV uses OpenStack as VIM, we need to analyze the capabilities this
+           OPNFV uses OpenStack as a VIM, we need to analyze the capabilities this
            component offers us. The networking functionality is provided by a
            single component called Neutron, which hides the controller under it,
            let it be Neutron itself or any supported SDN controller. As NFV

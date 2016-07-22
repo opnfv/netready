@@ -31,15 +31,16 @@ subnet 10.1.1.0/24 and assigned the same IP addresses 10.1.1.5. VNF 2 and VNF 3 
 on host A and B respectively, attached to subnet 10.1.1.0/24, and assigned different IP
 addresses 10.1.1.6 and 10.1.1.3 respectively.
 
-Here, the Network VRF Policy Resource is ``ECMP/AnyCast``. Traffic to **Anycast 10.1.1.5**
-can be load split from either WAN GW or another VM like G5.
+Here, the Network VRF Policy Resource is ``ECMP/AnyCast``. Traffic to the
+anycast IP **10.1.1.5** can be load split from either WAN GW or another VM like
+G5.
 
 
 
 Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Support for creating and managing L3VPNs is in general available in OpenStack
+Support for creating and managing L3VPNs is, in general, available in OpenStack
 Neutron by means of the BGPVPN project [BGPVPN]_. However, the BGPVPN project
 does not yet fully support ECMP as described in the following.
 

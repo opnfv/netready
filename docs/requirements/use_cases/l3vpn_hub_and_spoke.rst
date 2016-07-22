@@ -8,12 +8,12 @@ Hub and Spoke Case
 Description
 ~~~~~~~~~~~
 
-A Hub-and-spoke topology comprises two types of network entities: a central hub
-and multiple spokes. The corresponding VRFs of the hub and the spokes are
-configured to import and export routes such that all traffic is routed through
-the hub. As a result, spokes cannot communicate with each other directly, but
-only indirectly via the central hub. Hence, the hub typically hosts central network
-functions such firewalls.
+In a traditional Hub-and-spoke topology there are two types of network entities:
+a central hub and multiple spokes. The corresponding VRFs of the hub and the
+spokes are configured to import and export routes such that all traffic is
+directed through the hub. As a result, spokes cannot communicate with each other
+directly, but only indirectly via the central hub. Hence, the hub typically
+hosts central network functions such firewalls.
 
 Furthermore, there is no layer 2 connectivity between the VNFs.
 
