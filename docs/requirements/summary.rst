@@ -29,6 +29,14 @@ Based on the gap analyses, we draw the following conclusions:
   networking on-demand in order to accelerate time-to-market and achieve business
   agility for innovations in NFV networking business.
 
+* Neutron networks are implicitly, because of their reliance on subnets, L2
+  domains. L2 network overlays are the only way to implement Neutron networks
+  because of their semantics. However, L2 networks are inefficient ways to
+  implement cloud networking, and while this is not necessarily a problem for
+  enterprise use cases with moderate traffic it can add expense to the
+  infrastructure of NFV cases where networking is heavily used and efficient use
+  of capacity is key.
+
 * In NFV environment it should be possible to execute network administrator tasks
   without OpenStack administrator rights.
 
