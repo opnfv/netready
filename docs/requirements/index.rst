@@ -32,6 +32,7 @@ NetReady: Network Readiness
            ========== =====================================================
            22.03.2016 Project creation
            19.04.2016 Initial version of the deliverable uploaded to Gerrit
+           22.07.2016 First version ready for sharing with the community
            ========== =====================================================
 
 .. raw:: latex
