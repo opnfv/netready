@@ -9,6 +9,14 @@ Description
 There should be an API to manage the infrastructure-s networks between two
 OpenStack regions or instances.
 
+The following figure (:numref:`instances-architecture`) shows the architecture
+of the most relevant OpenStack components in multi instance OpenStack
+environment.
+
+.. figure:: images/instances-architecture.png
+    :name:  instances-architecture
+    :width: 50%
+
 The functionality behind the API depends on the underlying network providers (SDN
 controllers) and the networking setup.
 (For example OpenDaylight has an API to add new BGP neighbor.)

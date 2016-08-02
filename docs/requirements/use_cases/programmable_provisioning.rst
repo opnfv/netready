@@ -15,6 +15,14 @@ requires additional manual configuration work.  It shall be possible to
 configure provider networks without administrative rights.  It should be
 possible to assign the capability to create provider networks to any roles.
 
+The following figure (:numref:`api-users`) shows the possible users of an
+OpenStack API and the relation of OpenStack and ETSI NFV components. Boxes with
+solid line are the ETSI NFV components while the boxes with broken line are the
+OpenStack components.
+
+.. figure:: images/api-users.png
+    :name:  api-users
+    :width: 50%
 
 Derived Requirements
 ~~~~~~~~~~~~~~~~~~~~~

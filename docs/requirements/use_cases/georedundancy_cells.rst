@@ -13,6 +13,13 @@ perspective as the sub-cells are using only the internal message bus and there
 is no API (and CLI) to do maintenance actions in case of a network connectivity
 problem between the main cell and the sub cells.
 
+The following figure (:numref:`cells-architecture`) shows the architecture of
+the most relevant OpenStack components in multi cell OpenStack environment.
+
+.. figure:: images/cells-architecture.png
+    :name:  cells-architecture
+    :width: 50%
+
 The functionality behind the API depends on the underlying network providers (SDN
 controllers) and the networking setup.
 (For example OpenDaylight has an API to add new BGP neighbor.)
