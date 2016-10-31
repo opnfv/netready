@@ -24,10 +24,12 @@ OpenStack components.
     :name:  api-users
     :width: 50%
 
-Derived Requirements
-~~~~~~~~~~~~~~~~~~~~~
+
+Requirements
+~~~~~~~~~~~~
    - Authorize the possibility of provider network creation based on policy
-   - There should be a new entry in :code:`policy.json` which controls the provider network creation
+   - There should be a new entry in :code:`policy.json` which controls the
+     provider network creation
    - Default policy of this new entry should be :code:`rule:admin_or_owner`.
    - This policy should be respected by the Neutron API
 
@@ -39,9 +41,11 @@ Data model objects
 ++++++++++++++++++
    - No changes in the data model
 
+
 Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~
 Only admin users can manage provider networks [OS-NETWORKING-GUIDE-ML2]_.
+
 
 Potential implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,3 +54,25 @@ Potential implementation
    - When a provider network is created or modified neutron should check the
      authority with the policy engine instead of requesting administrative
      rights.
+
+
+Solution in upstream community
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A bug report has been submitted to the upstream OpenStack community to highlight
+this gap:
+https://bugs.launchpad.net/neutron/+bug/1630880
+
+This bug report revealed that this use case has already been addressed in the
+upstream community. Specifically, it is possible to specify the roles (e.g.,
+admin, regular user) in the Neutron policy.json file which are able to create
+and update provider networks.
+
+However, the OpenStack user guide wrongly stated that **only** administrators
+can create and update provider type networks. Hence, a correction has been
+submitted to the OpenStack documentation repository, clarifying the possibility
+to change this behavior based on policies:
+https://review.openstack.org/#/c/390359/
+
+In conclusion, this use case has been retired as the corresponding gaps have been
+closed in the upstream community.
