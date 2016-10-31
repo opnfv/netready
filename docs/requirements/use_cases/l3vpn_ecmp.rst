@@ -135,14 +135,14 @@ Gaps in the current solution
 Given the use case description and the currently available implementation in
 OpenStack provided by BGPVPN project, we identify the following gaps:
 
-* [L3VPN-ECMP-GAP1] Static routes are not yet supported by the BGPVPN project.
+* **[L3VPN-ECMP-GAP1] Static routes are not yet supported by the BGPVPN project.**
 
   Currently, no API for configuring static routes is available in the BGPVPN
   project. This feature is on the road map, however.
 
 
-* [L3VPN-ECMP-GAP2] Behavior not defined for multiple Neutron ports of the same
-  IP
+* **[L3VPN-ECMP-GAP2] Behavior not defined for multiple Neutron ports of the same
+  IP**
 
   The Neutron and BGPVPN API allow for creating multiple ports with the same
   IP in different networks and associating the networks with the same VPN. The
@@ -151,8 +151,8 @@ OpenStack provided by BGPVPN project, we identify the following gaps:
   of this feature is on the road map of the project, however.
 
 
-* [L3VPN-ECMP-GAP3] It is not possible to assign the same IP to multiple Neutron
-  ports within the same Neutron subnet.
+* **[L3VPN-ECMP-GAP3] It is not possible to assign the same IP to multiple Neutron
+  ports within the same Neutron subnet.**
 
   This is due to the fundamental requirement of avoiding IP collisions within
   the L2 domain which is a Neutron network.

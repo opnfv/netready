@@ -41,9 +41,6 @@ NetReady: Network Readiness
 
     \newpage
 
-.. include::
-    glossary.rst
-
 .. toctree::
     :maxdepth: 4
     :numbered:
@@ -52,4 +49,5 @@ NetReady: Network Readiness
     use_cases.rst
     retired_use_cases.rst
     summary.rst
+    glossary.rst
     references.rst
