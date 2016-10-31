@@ -50,5 +50,6 @@ NetReady: Network Readiness
 
     introduction.rst
     use_cases.rst
+    retired_use_cases.rst
     summary.rst
     references.rst
