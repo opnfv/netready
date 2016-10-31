@@ -39,7 +39,7 @@ Northbound API / Workflow
 Data model objects
 ++++++++++++++++++
 - local and remote endpoint objects (Most probably IP addresses with some
-additional properties).
+  additional properties).
 
 Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~

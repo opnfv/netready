@@ -1,7 +1,8 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-**Definition of terms**
+Definition of terms
+===================
 
 Different standards developing organizations and communities use different
 terminology related to Network Function Virtualization, Cloud Computing, and

@@ -108,20 +108,24 @@ by creating a dedicated Neutron network with two subnets for each VRF in the
 Hub-and-Spoke topology.
 
 1. Create Neutron network "hub"
+
   ``neutron net-create --tenant-id Blue hub``
 
 
 2. Create a separate Neutron network for every "spoke"
+
   ``neutron net-create --tenant-id Blue spoke-i``
 
 
 3. For every network (hub and spokes), create two subnets
+
   ``neutron subnet-create <hub/spoke-i UUID> --tenant-id Blue 10.1.1.0/24``
 
   ``neutron subnet-create <hub/spoke-i UUID> --tenant-id Blue 10.3.7.0/24``
 
 
 4. Create the Neutron ports in the corresponding networks
+
   ``neutron port-create --tenant-id Blue --name vFW(H) --fixed-ip subnet_id=<hub UUID>,ip_address=10.1.1.5``
 
   ``neutron port-create --tenant-id Blue --name VNF1(S) --fixed-ip subnet_id=<spoke-i UUID>,ip_address=10.3.7.9``
@@ -133,19 +137,23 @@ Hub-and-Spoke topology.
 
 5. Create a BGPVPN object (VRF) for the hub network with the corresponding import
    and export targets
+
   ``neutron bgpvpn-create --name hub-vrf --import-targets <RT-hub RT-spoke> --export-targets <RT-hub>``
 
 
 6. Create a BGPVPN object (VRF) for every spoke network with the corresponding import
    and export targets
+
   ``neutron bgpvpn-create --name spoke-i-vrf --import-targets <RT-hub> --export-targets <RT-spoke>``
 
 
 7. Associate the hub network with the hub VRF
+
   ``bgpvpn-net-assoc-create hub --network <hub network-UUID>``
 
 
 8. Associate each spoke network with the corresponding spoke VRF
+
   ``bgpvpn-net-assoc-create spoke-i --network <spoke-i network-UUID>``
 
 
@@ -191,64 +199,61 @@ OpenStack provided by [BGPVPN]_ project and [NETWORKING-SFC]_ project,
 we identify the following gaps:
 
 
-[L3VPN-HS-GAP1] No means to disable layer 2 semantic of Neutron networks
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+* **[L3VPN-HS-GAP1] No means to disable layer 2 semantic of Neutron networks**
 
-Neutron networks were originally designed to represent layer 2 broadcast
-domains. As such, all ports connected to a network are in principle
-inter-connected on layer 2 (not considering security rules here). In contrast,
-in order to realize L3VPN use cases such as the hub-and-spoke topology,
-connectivity among ports must be controllable on a per port basis on layer 3.
+  Neutron networks were originally designed to represent layer 2 broadcast
+  domains. As such, all ports connected to a network are in principle
+  inter-connected on layer 2 (not considering security rules here). In contrast,
+  in order to realize L3VPN use cases such as the hub-and-spoke topology,
+  connectivity among ports must be controllable on a per port basis on layer 3.
 
-There are ongoing efforts to relax this design assumption, for instance by means
-of routed networks ([NEUTRON-ROUTED-NETWORKS]_). In a routed network, a Neutron network
-is a layer 3 domain which is composed of multiple layer 2 segments. A routed
-network only provides layer 3 connectivity across segments, but layer 2
-connectivity across segments is **optional**. This means, depending on the
-particular networking backend and segmentation technique used, there might be
-layer 2 connectivity across segments or not. A new flag ``l2_adjacency``
-indicates whether or not a user can expect layer 2 connectivity or not across
-segments.
+  There are ongoing efforts to relax this design assumption, for instance by means
+  of routed networks ([NEUTRON-ROUTED-NETWORKS]_). In a routed network, a Neutron network
+  is a layer 3 domain which is composed of multiple layer 2 segments. A routed
+  network only provides layer 3 connectivity across segments, but layer 2
+  connectivity across segments is **optional**. This means, depending on the
+  particular networking backend and segmentation technique used, there might be
+  layer 2 connectivity across segments or not. A new flag ``l2_adjacency``
+  indicates whether or not a user can expect layer 2 connectivity or not across
+  segments.
 
-This flag, however, is ready-only and cannot be used to overwrite or disable the
-layer 2 semantics of a Neutron network.
-
-
-[L3VPN-HS-GAP2] No port-association available in the BGPVPN project yet
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-Due to gap [L3VPN-HS-GAP1], the [BGPVPN]_ project was not yet able to implement
-the concept of a port association. A port association would allow to associate
-individual ports with VRFs and thereby control layer 3 connectivity on a per
-port basis.
-
-The workflow described above intents to mimic port associations by means of
-separate Neutron networks. Hence, the resulting workflow is overly complicated
-and not intuitive by requiring to create additional Neutron entities (networks)
-which are not present in the target topology. Moreover, creating large numbers
-of Neutron networks limits scalability.
-
-Port associations are on the road map of the [BGPVPN]_ project, however, no
-design that overcomes the problems outlined above has been specified yet.
-Consequently, the time-line for this feature is unknown.
-
-As a result, creating a clean Hub-and-Spoke topology is current not yet
-supported by the [BGPVPN]_ API.
+  This flag, however, is ready-only and cannot be used to overwrite or disable the
+  layer 2 semantics of a Neutron network.
 
 
-[L3VPN-HS-GAP3] No support for static routes in the BGPVPN project yet
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+* **[L3VPN-HS-GAP2] No port-association available in the BGPVPN project yet**
 
-In order to realize the hub-and-spoke use case, a static route is needed to
-attract the traffic at the hub to the corresponding VNF (direct traffic to the
-firewall). Support for static routes in the BGPVPN project is available for the
-router association by means of the Neutron router extra routes feature. However,
-there is no support for static routes for network and port associations yet.
+  Due to gap [L3VPN-HS-GAP1], the [BGPVPN]_ project was not yet able to implement
+  the concept of a port association. A port association would allow to associate
+  individual ports with VRFs and thereby control layer 3 connectivity on a per
+  port basis.
 
-Design work for supporting static routes for network associations has started,
-but no final design has been proposed yet.
+  The workflow described above intents to mimic port associations by means of
+  separate Neutron networks. Hence, the resulting workflow is overly complicated
+  and not intuitive by requiring to create additional Neutron entities (networks)
+  which are not present in the target topology. Moreover, creating large numbers
+  of Neutron networks limits scalability.
+
+  Port associations are on the road map of the [BGPVPN]_ project, however, no
+  design that overcomes the problems outlined above has been specified yet.
+  Consequently, the time-line for this feature is unknown.
+
+  As a result, creating a clean Hub-and-Spoke topology is current not yet
+  supported by the [BGPVPN]_ API.
+
+
+* **[L3VPN-HS-GAP3] No support for static routes in the BGPVPN project yet**
+
+  In order to realize the hub-and-spoke use case, a static route is needed to
+  attract the traffic at the hub to the corresponding VNF (direct traffic to the
+  firewall). Support for static routes in the BGPVPN project is available for the
+  router association by means of the Neutron router extra routes feature. However,
+  there is no support for static routes for network and port associations yet.
+
+  Design work for supporting static routes for network associations has started,
+  but no final design has been proposed yet.
 
 ..
-.. [L3VPN-HS-GAP4] Creating a clean hub-and-spoke topology is current not yet supported by the NETWORKING-SFC API.
+.. L3VPN-HS-GAP4 Creating a clean hub-and-spoke topology is current not yet supported by the NETWORKING-SFC API.
 .. [Georg: We need to look deeper into SFC before we can substantiate our claim]
-
+..

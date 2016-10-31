@@ -117,17 +117,16 @@ Given the use case description and the current implementation of OpenStack
 Neutron, we identify the following gaps:
 
 
-[MB-GAP1] Limited support for multiple back-ends
-'''''''''''''''''''''''''''''''''''''''''''''''
+* **[MB-GAP1] Limited support for multiple back-ends**
 
-As pointed out above, the Neutron core plugin mechanism only allows for one
-active plugin at a time. The ML2 plugin allows for running multiple mechanism
-drivers in parallel, however, successful inter-working strongly depends on the
-individual driver.
+  As pointed out above, the Neutron core plugin mechanism only allows for one
+  active plugin at a time. The ML2 plugin allows for running multiple mechanism
+  drivers in parallel, however, successful inter-working strongly depends on the
+  individual driver.
 
-Moreover, the ML2 plugin and its API is - by design - very layer 2 focused. For
-NFV networking use cases beyond layer 2, for instance L3VPNs, a more flexible
-API is required.
+  Moreover, the ML2 plugin and its API is - by design - very layer 2 focused. For
+  NFV networking use cases beyond layer 2, for instance L3VPNs, a more flexible
+  API is required.
 
 
 Conclusion
