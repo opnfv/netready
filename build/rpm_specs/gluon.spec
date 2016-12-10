@@ -1,35 +1,42 @@
 %define release 1
 %define _sharedstatedir /var/lib
+%define build_timestamp %(date +"%Y%m%d")
 
-Summary:   OpenStack Gluon Framework
-Name:      gluon
-Version:   0.0.1
-Release:   %{release}%{?git}%{?dist}
+Summary:          OpenStack Gluon Framework
+Name:             gluon
+Version:          0.0.1
+Release:          %{release}_%{build_timestamp}
 
-License:   Apache 2.0
-Group:     Applications/Internet
-Source0:   gluon.tar.gz
-Url:       https://github.com/openstack/gluon
-BuildArch: noarch
+License:          Apache 2.0
+Group:            Applications/Internet
+Source0:          gluon.tar.gz
+Url:              https://github.com/openstack/gluon
+BuildArch:        noarch
 
-Vendor:    OpenStack <openstack-dev@lists.openstack.org>
-Packager:  Georg Kunz <georg.kunz@ericsson.com>
+#BuildRequires:    systemd
 
-Requires:  python-pbr
-Requires:  python-click
-Requires:  python-six
-Requires:  python-requests
-Requires:  python-yaml
-Requires:  python-sqlalchemy
-Requires:  python2-babel
-Requires:  python2-oslo-db
-Requires:  python2-oslo-config
-Requires:  python2-oslo-versionedobjects
-Requires:  python2-oslo-log
-Requires:  python2-oslo-utils
-Requires:  python2-oslo-i18n
-Requires:  python2-wsme
-Requires:  pytz
+Vendor:           OpenStack <openstack-dev@lists.openstack.org>
+Packager:         Georg Kunz <georg.kunz@ericsson.com>
+
+Requires:         python-pbr
+Requires:         python-click
+Requires:         python-six
+Requires:         python-requests
+Requires:         python-yaml
+Requires:         python-sqlalchemy
+Requires:         python2-babel
+Requires:         python2-oslo-db
+Requires:         python2-oslo-config
+Requires:         python2-oslo-versionedobjects
+Requires:         python2-oslo-log
+Requires:         python2-oslo-utils
+Requires:         python2-oslo-i18n
+Requires:         python2-wsme
+Requires:         pytz
+
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
 
 %description
 OpenStack Gluon framework for NFV networking
@@ -76,6 +83,15 @@ if ! getent passwd proton >/dev/null; then
 fi
 exit 0
 
+%post
+%systemd_post openstack-proton-server
+systemctl start openstack-proton-server
+
+%preun
+%systemd_preun openstack-proton-server
+
+%postun
+%systemd_postun_with_restart openstack-proton-server
 
 %clean
 rm -rf %{buildroot}
@@ -83,7 +99,8 @@ rm -rf %{buildroot}
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
 %attr(644,root,root) /usr/lib/systemd/system/openstack-proton-server.service
-%attr(640,proton,root) /etc/proton/proton.conf
-%attr(750,proton,root) /var/log/proton
-%attr(750,proton,root) /var/run/proton
-%attr(755,proton,root) /var/lib/proton
+%dir %attr(700,proton,root) %{_sysconfdir}/proton
+%attr(640,proton,root) %{_sysconfdir}/proton/proton.conf
+%dir %attr(750,proton,root) %{_localstatedir}/log/proton
+%dir %attr(750,proton,root) %{_localstatedir}/run/proton
+%dir %attr(755,proton,root) %{_sharedstatedir}/proton
