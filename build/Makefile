@@ -22,7 +22,7 @@ clean-gluon:
 	rm -rf noarch
 	rm -f $(GLUON_TAR)
 	rm -f openstack-proton-server.service
-	rm -f proton.conf
+	rm -f openstack-proton-shim-server.service
 	rm -rf gluon-$(GLUON_VER)
 
 $(GLUON_TAR):
