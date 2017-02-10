@@ -19,7 +19,7 @@ environment.
 
 The functionality behind the API depends on the underlying network providers (SDN
 controllers) and the networking setup.
-(For example OpenDaylight has an API to add new BGP neighbor.)
+(For example both OpenDaylight and ONOS have an API to add new BGP neighbors.)
 
 OpenStack Neutron should provide an abstracted API for this functionality what
 calls the underlying SDN controllers API.
@@ -39,7 +39,7 @@ Northbound API / Workflow
 Data model objects
 ++++++++++++++++++
 - local and remote endpoint objects (Most probably IP addresses with some
-  additional properties).
+  additional properties, like local or remote Autonomus Systems (AS)).
 
 Current implementation
 ~~~~~~~~~~~~~~~~~~~~~~

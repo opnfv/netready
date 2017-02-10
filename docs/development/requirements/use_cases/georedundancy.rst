@@ -62,7 +62,7 @@ The result of the deployment is shown in the following figure
 
 .. toctree::
    georedundancy_cells.rst
-   georedundancy_regions_insances.rst
+   georedundancy_regions_instances.rst
 
 Conclusion
 ----------
