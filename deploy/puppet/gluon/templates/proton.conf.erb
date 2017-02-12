@@ -1,0 +1,16 @@
+[DEFAULT]
+state_path = /var/lib/proton
+
+
+[api]
+# The listen IP for the proton API server
+host = <%= scope.lookupvar('gluon::bind_ip') %>
+
+# The port for the proton API server
+port = <%= scope.lookupvar('gluon::port') %>
+
+# IP of the etcd server
+etcd_host = <%= scope.lookupvar('gluon::etcd_bind_ip') %>
+
+# Port of the etcd server
+etcd_port = <%= scope.lookupvar('gluon::etcd_client_port') %>
