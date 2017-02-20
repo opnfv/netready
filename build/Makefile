@@ -1,7 +1,16 @@
+#
+# Copyright (c) 2016 Ericsson and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
 OPNFV_RELEASE=$(shell echo $(shell date -u +"%Y%m%d"))
 GLUON_REPO=https://github.com/openstack/gluon.git
 GLUON_BRANCH=master
-GLUON_VER=$(shell grep Version $(shell pwd)/rpm_specs/gluon.spec | head -n 1 | awk '{ print $$2 }')
+GLUON_VER=$(shell grep '^Version:' $(shell pwd)/rpm_specs/gluon.spec | head -n 1 | awk '{ print $$2 }')
 GLUON_REL=$(shell grep 'define release' $(shell pwd)/rpm_specs/gluon.spec | head -n 1 | awk '{ print $$3 }')_$(OPNFV_RELEASE)
 GLUON_TAR=gluon.tar.gz
 GLUON_RPM=noarch/gluon-$(GLUON_VER)-$(GLUON_REL).noarch.rpm
