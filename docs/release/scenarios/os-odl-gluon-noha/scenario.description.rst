@@ -81,6 +81,27 @@ for configuring the L3VPN service Proton is as follows:
 More detailed information can be found in the `Gluon feature guide <../release_userguide/index.html>`_.
 
 
+Scenario-specific test cases
+----------------------------
+
+A Gluon-specific test case is run against this scenario to verify the
+functionality provided by Gluon. This section briefly describes the test case.
+
+The test case verifies that Gluon can be used to provision a L3VPN which
+provides layer 3 connectivity between two virtual machines connected to two
+different networks. Specifically, the test case performs the following steps:
+
+ i) create two Gluon ports
+ ii) create a L3VPN
+ iii) create service bindings between the Gluon ports and the L3VPN
+ iv) boot two VMs - each using one of the previously created ports
+ v) send a single ping (ICMP) packet from VM1 to VM2 and vice versa
+ vi) verify that both pings succeeded
+
+All calls to the REST API of the L3VPN Proton are done by means of the
+protonclient command line tool.
+
+
 Limitations, Issues and Workarounds
 -----------------------------------
 .. Explain scenario limitations here, this should be at a design level rather than discussing
