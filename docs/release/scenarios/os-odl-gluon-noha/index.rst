@@ -2,6 +2,8 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
 
+.. _gluon-scenario:
+
 =================
 os-odl-gluon-noha
 =================

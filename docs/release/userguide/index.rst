@@ -4,9 +4,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
 
-=====================
-<Feature> User Guide
-=====================
+===================
+NetReady User Guide
+===================
 
 .. The feature user guide should provide an OPNFV user with enough information to
 .. use the features provided by the feature project in the supported scenarios.
