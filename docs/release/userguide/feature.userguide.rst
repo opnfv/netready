@@ -51,10 +51,11 @@ multiple SDN Controllers in collaborative and interoperable way.
 Gluon API Guidelines and Examples
 ---------------------------------
 
-This section shows you how to use **Proton** to create the needed objects,
-and then use ``nova boot`` to bind the port to a VM. It is assumed that you
-have already installed Gluon package, including ``etcd`` and **Gluon Plugin**,
-and started **Proton Server**.  If not, please refer to [1]_.
+This section shows you how to use **Proton** to create the needed objects, and
+then use ``nova boot`` to bind the port to a VM. It is assumed that you have
+already installed Gluon package, including ``etcd`` and **Gluon Plugin**, and
+started **Proton Server**.  If not, please refer to the :ref:`Installation guide
+<netready-installation>`.
 
 Getting Help
 ~~~~~~~~~~~~
@@ -139,7 +140,8 @@ parameters ``--api net-l3vpn`` are missing.
 The following sections give you the general work flow of how to use Proton to
 create and configure an L3VPN.
 
-**For more details and examples, please refer to [2]_**.
+For more details and examples, please refer to the `Gluon upstream user guide
+<https://github.com/openstack/gluon/blob/master/doc/source/usage.rst>`_.
 
 Work Flow of Using L3VPN
 ++++++++++++++++++++++++
@@ -236,9 +238,4 @@ To Use Gluon in a Project
 .. code-block:: bash
 
     import gluon
-
-References
-
-.. [1] ../installation/index
-.. [2] https://github.com/openstack/gluon/blob/master/doc/source/usage.rst
 

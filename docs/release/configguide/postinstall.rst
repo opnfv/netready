@@ -29,7 +29,7 @@ Automated post installation activities
 An overview of all test suites run by the OPNFV pipeline against the
 os-odl-gluon-noha scenario as well as the test results can be found at the
 `Functest test result overview page.
-<http://testresults.opnfv.org/reporting/functest/release/master/index-status-apex.html>`_
+<http://testresults.opnfv.org/reporting/functest/release/danube/index-status-apex.html>`_
 
 
 
@@ -51,10 +51,9 @@ Platform components validation
 .. Describe any component specific validation procedures necessary for your
 .. deployment tool in this section.
 
-As described in the `Gluon scenario description
-<../release_scenarios_os-odl-gluon-noha/index.html>`_, the Gluon framework
-consists of five software components. This section describes how to validate
-their successful installation.
+As described in the :ref:`Gluon scenario description <gluon-scenario>`, the
+Gluon framework consists of five software components. This section describes
+how to validate their successful installation.
 
 * **Gluon core plugin**: Check in the file ``/etc/neutron/neutron.conf`` that
   the Neutron core plugin is set to ``gluon``.

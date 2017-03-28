@@ -78,7 +78,7 @@ for configuring the L3VPN service Proton is as follows:
   ii) create a new vpn object
   iii) bind the port to the vpn object
 
-More detailed information can be found in the `Gluon feature guide <../release_userguide/index.html>`_.
+More detailed information can be found in the :ref:`Gluon feature guide <netready-userguide>`.
 
 
 Scenario-specific test cases
