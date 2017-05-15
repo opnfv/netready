@@ -10,7 +10,6 @@
 #
 from opnfv.deployment import factory
 import functest.utils.openstack_utils as osutils
-import functest.utils.functest_logger as ft_logger
 from functest.utils.constants import CONST
 
 import json
@@ -19,7 +18,7 @@ import os
 import sys
 import time
 
-logger = ft_logger.Logger('netready-gluon-vping').getLogger()
+logger = logging.getLogger('netready-gluon-vping')
 logger.setLevel(logging.DEBUG)
 
 
@@ -350,4 +349,5 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.basicConfig()
     sys.exit(main())
