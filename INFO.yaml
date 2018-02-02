@@ -1,0 +1,68 @@
+---
+project: 'Network Readiness (NetReady)'
+project_creation_date: 'March 22, 2016'
+project_category: ''
+lifecycle_state: 'Incubation'
+project_lead: &opnfv_netready_ptl
+    name: 'Georg Kunz'
+    email: 'georg.kunz@ericsson.com'
+    id: 'georgkunz'
+    company: 'ericsson.com'
+    timezone: 'Europe/Berlin'
+primary_contact: *opnfv_netready_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opnfv.org/projects/NETREADY'
+    key: 'NETREADY'
+mailing_list:
+    type: 'mailman2'
+    url: 'opnfv-tech-discuss@lists.opnfv.org'
+    tag: '[netready]'
+realtime_discussion:
+    type: irc
+    server: 'freenode.net'
+    channel: '#opnfv-netready'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda:  'https://wiki.opnfv.org/display/meetings/NetReady'
+      url:  'https://global.gotomeeting.com/join/819733085'
+      server: 'freenode.net'
+      channel: '#opnfv-meeting'
+      repeats: 'weekly'
+      time:  'Wednesday, 17:00 UTC'
+repositories:
+    - 'netready'
+committers:
+    - <<: *opnfv_netready_ptl
+    - name: 'Ashlee Young'
+      email: 'ash@yunify.org'
+      company: 'yunify.org'
+      id: 'im2bz2pee'
+    - name: 'Bin Hu'
+      email: 'bh526r@att.com'
+      company: 'att.com'
+      id: 'bh526r'
+    - name: 'Juraj Linkeš'
+      email: 'juraj.linkes@pantheon.tech'
+      company: 'pantheon.tech'
+      id: 'juraj.linkes'
+    - name: 'Tim Irnich'
+      email: 'tim.irnich@ericsson.com'
+      company: 'ericsson.com'
+      id: 'timirnich'
+    - name: 'Ahmed Maged'
+      email: 'amaged@gmail.com'
+      company: 'gmail.com'
+      id: 'amaged'
+    - name: 'Nikolas Hermanns'
+      email: 'nikolas.hermanns@ericsson.com'
+      company: 'ericsson.com'
+      id: 'enikher'
+    - name: 'Gergely Csatari'
+      email: 'gergely.csatari@nokia.com'
+      company: 'nokia.com'
+      id: 'csatari'
+tsc:
+    # yamllint disable rule:line-length
+    approval: 'http://ircbot.wl.linuxfoundation.org/meetings/opnfv-meeting/2016/opnfv-meeting.2016-03-22-14.00.html'
+    # yamllint enable rule:line-length
